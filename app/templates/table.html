@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+{% block app_content %}
+    <div class="col-md-4">
+        <font size="5" face="Arial">
+            Sort by
+        </font>
+        {{ wtf.quick_form(form) }}
+    </div>
+    <font size="5" face="Arial">
+        {{ table|safe }}
+    </font>
+{% endblock %}

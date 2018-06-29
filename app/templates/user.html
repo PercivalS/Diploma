@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <table class="table table-hover">
+        <tr>
+            <td width="100px"><img src="{{ user.avatar(100) }}"></td>
+            <td>
+                <h3> User: {{ user.username }}</h3>
+                {% if user.date_of_birth %}
+                    <p>
+                        Date of birth: {{ user.date_of_birth.strftime('%Y.%m.%d') }}
+                    </p>
+                {% endif %}
+                <p>
+                    <a href="{{ url_for('edit_profile') }}">Edit your profile</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+    {% for score in scores %}
+        {% include '_score.html' %}
+    {% endfor %}
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a href="{{ prev_url or '#' }}">
+                    <span aria-hidden="true">&larr;</span>Older scores
+                </a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a href="{{ next_url or '#' }}">
+                    Newer scores<span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}
